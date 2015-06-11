@@ -1,18 +1,18 @@
 source('readData.R')
 
-genPlot1 <- function(save=T) {
+makePlot1 <- function(save=F) {
     
-    xData = powData$Global_active_power
-    title = 'Global Active Power'
-    xLabel = 'Global Active Power (kilowatts)'
-    color = 2
-    w = 480
-    h = 480
-
     par(bg='white')
-    hist(xData, main=title, xlab=xLabel, col=color)
+
+    with(powData, hist(
+        Global_active_power,
+        main = 'Global Active Power',
+        xlab = 'Global Active Power (kilowatts)',
+        col  = 'red'
+    ))
+
     if(save) {
         dev.copy(png,'plot1.png')
-        dev.off()
+        q <- dev.off()
     }
 }
